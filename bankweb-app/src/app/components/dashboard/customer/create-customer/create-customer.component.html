@@ -1,0 +1,55 @@
+<body>
+  <h2 style="text-align: center;">Create Customer</h2>
+  <form clrForm [formGroup]="createCustomerForm" (ngSubmit)="onSubmit()">
+
+    <clr-input-container>
+      <label>Customer SSN Id</label>
+      <input clrInput name="customerSSNID" formControlName="SSN_ID"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Customer Name</label>
+      <input clrInput name="customerName" formControlName="Name"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Age</label>
+      <input clrInput name="customerAge" formControlName="Age"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Address Line 1</label>
+      <input clrInput name="customerAddress_1" formControlName="Address_1"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Address Line 2</label>
+      <input clrInput name="customerAddress_2" formControlName="Address_2"/>
+    </clr-input-container>
+
+    <clr-select-container>
+      <label>Select State</label>
+      <select clrSelect name="state" (change)="onChangeState($event.target.value)" formControlName="State">
+        <option *ngIf="stateInfo" value="-1">--Select State--</option>
+        <option *ngFor="let state of stateInfo; let j = index" value="{{j}}">
+          {{state.StateName}}
+        </option>
+      </select>
+    </clr-select-container>
+
+    <clr-select-container>
+      <label>Select City</label>
+      <select clrSelect name="city" formControlName="City">
+        <option *ngIf="cityInfo" value="-1">--Select CIty--</option>
+        <option *ngFor="let city of cityInfo; let k = index" value="{{k}}">{{city}}</option>
+      </select>
+    </clr-select-container>
+
+    <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+      <button type="submit" class="btn">Submit</button>
+
+      <button type="button" class="btn" (click)="resetForm(createCustomerForm)">Reset</button>
+    </div>
+
+  </form>
+</body>

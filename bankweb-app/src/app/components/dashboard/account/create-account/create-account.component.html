@@ -1,0 +1,31 @@
+<body>
+  <h2 style="text-align: center;">Create Account</h2>
+  <form clrForm [formGroup]="createAccountForm" (ngSubmit)="onSubmit()">
+
+    <clr-input-container>
+      <label>Customer ID</label>
+      <input clrInput name="customerID" formControlName="CUST_ID"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Deposit Amount</label>
+      <input clrInput name="depositAmount" formControlName="Amount"/>
+    </clr-input-container>
+
+    <clr-select-container>
+      <label>Account Type</label>
+      <select clrSelect name="accountType" formControlName="AccType">
+        <option *ngFor="let ac_type of accountTypes" value="{{ac_type}}">
+          {{ac_type}}
+        </option>
+      </select>
+    </clr-select-container>
+
+    <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+      <button type="submit" class="btn">Submit</button>
+
+      <button type="button" class="btn" (click)="resetForm(createAccountForm)">Reset</button>
+    </div>
+
+  </form>
+</body>

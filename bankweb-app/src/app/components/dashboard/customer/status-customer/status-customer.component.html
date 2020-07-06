@@ -1,0 +1,65 @@
+<h2 style="text-align: center;">Customer Status List</h2>
+<clr-datagrid>
+  <clr-dg-column>View Details</clr-dg-column>
+  <clr-dg-column>Customer ID</clr-dg-column>
+  <clr-dg-column>Customer SSN ID</clr-dg-column>
+  <clr-dg-column>Status</clr-dg-column>
+  <clr-dg-column>Message</clr-dg-column>
+  <clr-dg-column>Last Updated</clr-dg-column>
+  <clr-dg-column>Operations</clr-dg-column>
+
+  <clr-dg-row *ngFor="let customer of customers; let j = index" [clrDgItem]="customer">
+      <clr-dg-cell></clr-dg-cell>
+      <clr-dg-cell>{{customer.CUST_ID}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.SSN_ID}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.Status}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.Message}}</clr-dg-cell>
+      <clr-dg-cell>{{customer.timestamp | date}}</clr-dg-cell>
+      <clr-dg-cell>
+        <button class="btn btn-sm" (click)="refresh(j)">
+          <clr-icon shape="refresh"></clr-icon>
+        </button>
+      </clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-detail *clrIfDetail="let customer">
+    <clr-dg-detail-header>Customer Details</clr-dg-detail-header>
+    <clr-dg-detail-body>
+      <clr-datagrid>
+        <clr-dg-column>Property</clr-dg-column>
+        <clr-dg-column>Value</clr-dg-column>
+
+        <clr-dg-row>
+          <clr-dg-cell>Name</clr-dg-cell>
+          <clr-dg-cell>{{customer.Name}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Age</clr-dg-cell>
+          <clr-dg-cell>{{customer.Age}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>Address</clr-dg-cell>
+          <clr-dg-cell>{{customer.Address}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>State</clr-dg-cell>
+          <clr-dg-cell>{{customer.State}}</clr-dg-cell>
+        </clr-dg-row>
+        <clr-dg-row>
+          <clr-dg-cell>City</clr-dg-cell>
+          <clr-dg-cell>{{customer.City}}</clr-dg-cell>
+        </clr-dg-row>
+
+      </clr-datagrid>
+    </clr-dg-detail-body>
+  </clr-dg-detail>
+
+  <clr-dg-footer>{{customers.length}} customers</clr-dg-footer>
+</clr-datagrid>
+
+<div style="text-align: center;">
+  <button class="btn" (click)="refreshAll()">
+    <clr-icon shape="refresh"></clr-icon>
+    <span> Refresh List</span>
+  </button>
+</div>

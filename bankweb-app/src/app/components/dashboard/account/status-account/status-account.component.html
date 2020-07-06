@@ -1,0 +1,33 @@
+<h2 style="text-align: center;">Account Status List</h2>
+<clr-datagrid>
+  <clr-dg-column>Customer ID</clr-dg-column>
+  <clr-dg-column>Account ID</clr-dg-column>
+  <clr-dg-column>Account Type</clr-dg-column>
+  <clr-dg-column>Account Status</clr-dg-column>
+  <clr-dg-column>Message</clr-dg-column>
+  <clr-dg-column>Last Updated</clr-dg-column>
+  <clr-dg-column>Operations</clr-dg-column>
+
+  <clr-dg-row *ngFor="let account of accounts; let j = index">
+      <clr-dg-cell>{{account.CUST_ID}}</clr-dg-cell>
+      <clr-dg-cell>{{account.ACC_ID}}</clr-dg-cell>
+      <clr-dg-cell>{{account.AccType}}</clr-dg-cell>
+      <clr-dg-cell>{{account.Status}}</clr-dg-cell>
+      <clr-dg-cell>{{account.Message}}</clr-dg-cell>
+      <clr-dg-cell>{{account.timestamp | date}}</clr-dg-cell>
+      <clr-dg-cell>
+        <button class="btn btn-sm" (click)="refresh(j)">
+          <clr-icon shape="refresh"></clr-icon>
+        </button>
+      </clr-dg-cell>
+  </clr-dg-row>
+
+  <clr-dg-footer>{{accounts.length}} accounts</clr-dg-footer>
+</clr-datagrid>
+
+<div style="text-align: center;">
+  <button class="btn" (click)="refreshAll()">
+    <clr-icon shape="refresh"></clr-icon>
+    <span> Refresh List</span>
+  </button>
+</div>

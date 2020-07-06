@@ -1,0 +1,10 @@
+body {
+  text-align: center;
+}
+form {
+  display: inline-block;
+  min-width: 600px;
+}
+input,select {
+  width: 150px;
+}

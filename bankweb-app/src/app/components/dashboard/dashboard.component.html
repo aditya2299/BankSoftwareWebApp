@@ -1,0 +1,74 @@
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <div style="flex: 1;" *ngIf="this.user_bool">
+
+      <clr-dropdown style="margin-right: 30px;">
+        <button class="btn btn-primary" clrDropdownTrigger>
+            Customer Management
+            <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen>
+            <div aria-label="Dropdown header Action 1" routerLink="customer/create" clrDropdownItem>Create Customer</div>
+            <div aria-label="Dropdown header Action 1" routerLink="customer/update" clrDropdownItem>Update Customer</div>
+            <div aria-label="Dropdown header Action 1" routerLink="customer/delete" clrDropdownItem>Delete Customer</div>
+            <div aria-label="Dropdown header Action 1" routerLink="customer/status" clrDropdownItem>Customer Status</div>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+
+      <clr-dropdown>
+        <button class="btn btn-primary" clrDropdownTrigger>
+          Account Management
+          <clr-icon shape="caret down"></clr-icon>
+        </button>
+        <clr-dropdown-menu *clrIfOpen>
+            <div aria-label="Dropdown header Action 1" routerLink="account/create" clrDropdownItem>Create Account</div>
+            <div aria-label="Dropdown header Action 1" routerLink="account/delete" clrDropdownItem>Delete Account</div>
+            <div aria-label="Dropdown header Action 1" routerLink="account/status" clrDropdownItem>Account Status</div>
+        </clr-dropdown-menu>
+      </clr-dropdown>
+
+    </div>
+
+    <div style="flex: 1;" *ngIf="!this.user_bool">
+
+      <a routerLink="account/details">
+        <button class="btn btn-primary">
+          Account Details
+        </button>
+      </a>
+
+      <a routerLink="account/deposit">
+        <button class="btn btn-primary">
+          Deposit Money
+        </button>
+      </a>
+
+      <a routerLink="account/withdraw">
+        <button class="btn btn-primary">
+          Withdraw Money
+        </button>
+      </a>
+
+      <a routerLink="account/transfer">
+        <button class="btn btn-primary">
+          Transfer Money
+        </button>
+      </a>
+
+      <a routerLink="account/statement">
+        <button class="btn btn-primary">
+          Statements
+        </button>
+      </a>
+
+    </div>
+
+    <button class="btn btn-warning btn-custom" (click)="logout()">
+      <clr-icon shape="logout"></clr-icon>
+      Logout
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

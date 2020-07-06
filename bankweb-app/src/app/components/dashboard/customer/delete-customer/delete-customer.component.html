@@ -1,0 +1,59 @@
+<h2 style="text-align: center;">Delete Customer</h2>
+<form clrStepper [formGroup]="deleteform">
+  <clr-stepper-panel formGroupName="identity">
+    <clr-step-title>Search Customer</clr-step-title>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>SSN ID</label>
+        <input clrInput formControlName="SSN_ID" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>CUSTOMER ID</label>
+        <input clrInput formControlName="CUST_ID" />
+      </clr-input-container>
+
+      <button class="btn btn-success-outline" (click)="getCustomerData()" *ngIf="!this.proceed">Verify</button>
+      <button clrStepButton="next" [disabled]="!this.proceed">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="delcustform">
+    <clr-step-title>Delete Customer</clr-step-title>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>SSN ID</label>
+        <input clrInput formControlName="SSN_ID" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>CUSTOMER ID</label>
+        <input clrInput formControlName="CUST_ID" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Customer name</label>
+        <input clrInput formControlName="CUST_NAME" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Address</label>
+        <input clrInput formControlName="ADDRESS" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Age</label>
+        <input clrInput formControlName="AGE" />
+      </clr-input-container>
+
+      <button clrStepButton="submit" (click)="delete_cust()" [disabled]="deleted">Delete</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+</form>
+
+<div style="text-align: center;">
+  <button class="btn btn-primary" *ngIf="completed" (click)="resetForm(this.deleteform)">
+    Reset
+  </button>
+</div>

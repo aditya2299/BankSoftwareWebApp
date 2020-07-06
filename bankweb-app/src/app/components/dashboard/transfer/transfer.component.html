@@ -1,0 +1,60 @@
+<body>
+  <h2 style="text-align: center;">Transfer Money Form</h2>
+  <form clrForm [formGroup]="transferForm" (ngSubmit)="transferAmount()">
+
+    <clr-select-container>
+      <label>Source Account Id</label>
+      <select clrSelect name="SRC_ACC_ID" formControlName="SRC_ACC_ID" (change)="onChangeSRCId($event.target.value)">
+        <option *ngFor="let src_acc_id of src_id_list; let j = index" value="{{src_acc_id}}">{{src_acc_id}}</option>
+      </select>
+    </clr-select-container>
+
+    <clr-select-container>
+      <label>Target Account Id</label>
+      <select clrSelect name="TRG_ACC_ID" formControlName="TRG_ACC_ID" (change)="onChangeTRGId($event.target.value)">
+        <option *ngFor="let trg_acc_id of trg_id_list; let k = index" value="{{trg_acc_id}}">{{trg_acc_id}}</option>
+      </select>
+    </clr-select-container>
+
+    <clr-input-container>
+      <label>Transfer Amount</label>
+      <input clrInput name="TransferAmount" formControlName="TransferAmount"/>
+    </clr-input-container>
+
+    <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;" *ngIf="!showReciept">
+      <button type="submit" class="btn">Transfer Amount</button>
+    </div>
+
+    <clr-datagrid *ngIf="showReciept">
+      <clr-dg-column>Source Account ID</clr-dg-column>
+      <clr-dg-column>Balance Before Transfer</clr-dg-column>
+      <clr-dg-column>Latest Balance</clr-dg-column>
+
+      <clr-dg-row>
+          <clr-dg-cell>{{this.src_account.ACC_ID}}</clr-dg-cell>
+          <clr-dg-cell>{{this.src_account.Amount}}</clr-dg-cell>
+          <clr-dg-cell>{{this.latest_src_amount}}</clr-dg-cell>
+      </clr-dg-row>
+
+    </clr-datagrid>
+
+    <clr-datagrid *ngIf="showReciept">
+      <clr-dg-column>Target Account ID</clr-dg-column>
+      <clr-dg-column>Balance Before Transfer</clr-dg-column>
+      <clr-dg-column>Latest Balance</clr-dg-column>
+
+      <clr-dg-row>
+          <clr-dg-cell>{{this.trg_account.ACC_ID}}</clr-dg-cell>
+          <clr-dg-cell>{{this.trg_account.Amount}}</clr-dg-cell>
+          <clr-dg-cell>{{this.latest_trg_amount}}</clr-dg-cell>
+      </clr-dg-row>
+
+    </clr-datagrid>
+
+  </form>
+
+  <div *ngIf="showReciept" style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+    <button (click)="resetForm(this.transferForm)" class="btn">Reset Form</button>
+  </div>
+
+</body>

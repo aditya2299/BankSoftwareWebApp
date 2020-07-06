@@ -1,0 +1,56 @@
+<body>
+  <h2 style="text-align: center;">Deposit Form</h2>
+  <h3 style="text-align: center;margin-top: 50px;" *ngIf="!showForm">Please Select An Account from Account Details Screen</h3>
+  <form clrForm [formGroup]="depositForm" (ngSubmit)="onSubmit()" *ngIf="showForm">
+
+    <clr-input-container>
+      <label>Customer ID</label>
+      <input clrInput name="customerID" formControlName="CUST_ID"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Account ID</label>
+      <input clrInput name="accountID" formControlName="ACC_ID"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Account Type</label>
+      <input clrInput name="accountType" formControlName="AccType"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Balance</label>
+      <input clrInput name="balance" formControlName="Balance"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Deposit Amount</label>
+      <input clrInput name="newAmount" formControlName="NewAmount"/>
+    </clr-input-container>
+
+    <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;" *ngIf="!showReciept">
+      <button type="submit" class="btn">Submit</button>
+    </div>
+
+  </form>
+
+  <clr-datagrid *ngIf="showReciept">
+    <clr-dg-column>Customer ID</clr-dg-column>
+    <clr-dg-column>Account ID</clr-dg-column>
+    <clr-dg-column>Balance Before Deposit</clr-dg-column>
+    <clr-dg-column>Latest Balance</clr-dg-column>
+
+    <clr-dg-row>
+        <clr-dg-cell>{{this.curr_account.CUST_ID}}</clr-dg-cell>
+        <clr-dg-cell>{{this.curr_account.ACC_ID}}</clr-dg-cell>
+        <clr-dg-cell>{{this.curr_account.Amount}}</clr-dg-cell>
+        <clr-dg-cell>{{this.recieptData}}</clr-dg-cell>
+    </clr-dg-row>
+
+  </clr-datagrid>
+
+  <div *ngIf="showReciept" style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+    <button (click)="redirect()" class="btn">OK</button>
+  </div>
+
+</body>

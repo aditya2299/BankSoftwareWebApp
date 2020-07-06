@@ -1,0 +1,77 @@
+<body>
+  <h2 style="text-align: center;">Statements</h2>
+  <form clrForm [formGroup]="statementForm" (ngSubmit)="onSubmit()" *ngIf="showForm">
+
+    <clr-select-container>
+      <label>Account Id</label>
+      <select clrSelect name="ACC_ID" formControlName="ACC_ID" >
+        <option *ngFor="let acc_id of acc_id_list; let k = index" value="{{k}}">{{acc_id}}</option>
+      </select>
+    </clr-select-container>
+
+    <clr-radio-container>
+      <label>Select Statements By</label>
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio formControlName="method" value="no_of_trans" />
+        <label>Last N Transactions</label>
+      </clr-radio-wrapper>
+      <clr-radio-wrapper>
+        <input type="radio" clrRadio formControlName="method" value="date_gap" />
+        <label>Start Date & End Date</label>
+      </clr-radio-wrapper>
+    </clr-radio-container>
+
+    <div *ngIf="displayminiform">
+
+      <div *ngIf="this.switchminiform">
+
+        <clr-select-container>
+          <label>Number of Transactions</label>
+          <select clrSelect name="TRANS_NO" formControlName="TRANS_NO" >
+            <option *ngFor="let trans_no of transaction_nos;" value="{{trans_no}}">{{trans_no}}</option>
+          </select>
+        </clr-select-container>
+
+      </div>
+
+      <div *ngIf="!this.switchminiform">
+
+        <clr-date-container>
+          <label>Start Date</label>
+          <input type="date" clrDate name="START_DATE" formControlName="START_DATE">
+        </clr-date-container>
+
+        <clr-date-container>
+          <label>Start Date</label>
+          <input type="date" clrDate name="END_DATE" formControlName="END_DATE">
+        </clr-date-container>
+
+      </div>
+    </div>
+
+    <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+      <button type="submit" class="btn">Get Statements</button>
+    </div>
+
+  </form>
+
+  <clr-datagrid *ngIf="!showForm">
+    <clr-dg-column>Transaction ID</clr-dg-column>
+    <clr-dg-column>Description</clr-dg-column>
+    <clr-dg-column>Date</clr-dg-column>
+    <clr-dg-column>Amount</clr-dg-column>
+
+    <clr-dg-row *ngFor="let statement of statement_list; let j = index">
+        <clr-dg-cell>{{statement.TRANS_ID}}</clr-dg-cell>
+        <clr-dg-cell>{{statement.Description}}</clr-dg-cell>
+        <clr-dg-cell>{{statement.Date}}</clr-dg-cell>
+        <clr-dg-cell>{{statement.Amount}}</clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{statement_list.length}} statements</clr-dg-footer>
+  </clr-datagrid>
+
+  <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+    <button class="btn" (click)="getNewData()" *ngIf="!showForm">Get New Data</button>
+  </div>
+</body>

@@ -1,0 +1,22 @@
+<body>
+  <h2 style="text-align: center;">Delete Account</h2>
+  <form clrForm [formGroup]="accountForm" (ngSubmit)="onDelete()">
+
+    <clr-select-container>
+      <label>Account Id</label>
+      <select clrSelect name="ACC_ID" formControlName="ACC_ID" (change)="onChangeId($event.target.value)">
+        <option *ngFor="let acc_id of acc_id_list; let k = index" value="{{k}}">{{acc_id}}</option>
+      </select>
+    </clr-select-container>
+
+    <clr-input-container>
+      <label>Account Type</label>
+      <input clrInput name="AccType" formControlName="AccType"/>
+    </clr-input-container>
+
+    <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+      <button type="submit" class="btn">Delete</button>
+    </div>
+
+  </form>
+</body>

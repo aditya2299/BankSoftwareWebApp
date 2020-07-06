@@ -1,0 +1,72 @@
+<body>
+  <h2 style="text-align: center;">Account(s) Details</h2>
+  <form clrForm [formGroup]="accountDetailForm" (ngSubmit)="onSubmit()" *ngIf="showForm">
+
+    <clr-input-container>
+      <label>Customer ID</label>
+      <input clrInput name="customerID" formControlName="CUST_ID"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Customer SSN ID</label>
+      <input clrInput name="customerSSNID" formControlName="SSN_ID"/>
+    </clr-input-container>
+
+    <clr-input-container>
+      <label>Account ID</label>
+      <input clrInput name="accountID" formControlName="ACC_ID"/>
+    </clr-input-container>
+
+    <div style="margin-top: 30px;display: flex;justify-content: space-around;margin-left: auto;margin-right: auto;width: 50%;">
+      <button type="submit" class="btn">Submit</button>
+
+      <button type="button" class="btn" (click)="resetForm(accountDetailForm)">Reset</button>
+    </div>
+
+  </form>
+
+  <clr-datagrid *ngIf="!showForm">
+    <clr-dg-column>Customer ID</clr-dg-column>
+    <clr-dg-column>Account ID</clr-dg-column>
+    <clr-dg-column>Account Type</clr-dg-column>
+    <clr-dg-column>Account Balance</clr-dg-column>
+    <clr-dg-column>Operations</clr-dg-column>
+
+    <clr-dg-row *ngFor="let account of accounts; let j = index">
+        <clr-dg-cell>{{account.CUST_ID}}</clr-dg-cell>
+        <clr-dg-cell>{{account.ACC_ID}}</clr-dg-cell>
+        <clr-dg-cell>{{account.AccType}}</clr-dg-cell>
+        <clr-dg-cell>{{account.Amount}}</clr-dg-cell>
+        <clr-dg-cell>
+          <a>
+            <button class="btn btn-primary" (click)="deposit(j)">
+              Deposit Money
+            </button>
+          </a>
+
+          <a>
+            <button class="btn btn-primary" (click)="withdraw(j)">
+              Withdraw Money
+            </button>
+          </a>
+
+          <a>
+            <button class="btn btn-primary" (click)="transfer(j)">
+              Transfer Money
+            </button>
+          </a>
+
+          <a>
+            <button class="btn btn-primary" (click)="refresh(j)">
+              Refresh
+            </button>
+          </a>
+        </clr-dg-cell>
+    </clr-dg-row>
+
+    <clr-dg-footer>{{accounts.length}} accounts</clr-dg-footer>
+  </clr-datagrid>
+
+  <button type="button" class="btn" (click)="resetForm(accountDetailForm)" *ngIf="!showForm">Get New Details</button>
+  <button type="button" class="btn" (click)="refreshlist()" *ngIf="!showForm"><clr-icon shape="refresh"></clr-icon> Refresh List</button>
+</body>

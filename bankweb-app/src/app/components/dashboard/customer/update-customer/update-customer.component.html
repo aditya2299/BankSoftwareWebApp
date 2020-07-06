@@ -1,0 +1,74 @@
+<h2 style="text-align: center;">Update Customer</h2>
+<form clrStepper [formGroup]="updateform">
+  <clr-stepper-panel formGroupName="identity">
+    <clr-step-title>Search Customer</clr-step-title>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>SSN ID</label>
+        <input clrInput formControlName="SSN_ID" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>CUSTOMER ID</label>
+        <input clrInput formControlName="CUST_ID" />
+      </clr-input-container>
+
+      <button class="btn btn-success-outline" (click)="getCustomerData()" *ngIf="!this.proceed">Verify</button>
+      <button clrStepButton="next" [disabled]="!this.proceed">next</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+  <clr-stepper-panel formGroupName="newcustform">
+    <clr-step-title>Update Customer</clr-step-title>
+    <clr-step-content *clrIfExpanded>
+      <clr-input-container>
+        <label>SSN ID</label>
+        <input clrInput formControlName="SSN_ID" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>CUSTOMER ID</label>
+        <input clrInput formControlName="CUST_ID" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Old Customer name</label>
+        <input clrInput formControlName="OLD_CUST_NAME" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>New Customer name</label>
+        <input clrInput formControlName="NEW_CUST_NAME" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Old Address</label>
+        <input clrInput formControlName="OLD_ADDRESS" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>New Address</label>
+        <input clrInput formControlName="NEW_ADDRESS" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>Old Age</label>
+        <input clrInput formControlName="OLD_AGE" />
+      </clr-input-container>
+
+      <clr-input-container>
+        <label>New Age</label>
+        <input clrInput formControlName="NEW_AGE" />
+      </clr-input-container>
+
+      <button clrStepButton="submit" [disabled]='!this.canSubmit' (click)="submit()">submit</button>
+    </clr-step-content>
+  </clr-stepper-panel>
+
+</form>
+
+<div style="text-align: center;">
+  <button class="btn btn-primary" *ngIf="completed" (click)="resetForm(this.updateform)">
+    Reset
+  </button>
+</div>
